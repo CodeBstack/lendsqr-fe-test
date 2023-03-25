@@ -16,13 +16,19 @@ const AllRoutes: React.FC<
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/login"
-          element={<Login />}
-        />
-        <Route path="/dashboard">
-          <Route index element={<Dashboard />} />
-          <Route path='users' element={<Users />} />
+        <Route path="/">
+          <Route path="" element={<Login />} />
+          
+          <Route path="/dashboard">
+            <Route
+              path=""
+              element={<Dashboard />}
+            />
+            <Route
+              path="users"
+              element={<Users />}
+            />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
