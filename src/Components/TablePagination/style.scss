@@ -1,0 +1,29 @@
+.pagination-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 1.2rem 0;
+  // margin-left: 1rem;
+  p {
+    font-size: 14px;
+    color: #718096;
+  }
+  button {
+    font-size: 14px;
+    border-radius: 5px;
+    &.Mui-selected,
+    &.MuiPaginationItem-previousNext {
+      @apply bg-primary;
+      color: white;
+      &.Mui-disabled {
+        @apply bg-gray-200;
+        color: black;
+      }
+    }
+  }
+  li {
+    padding: 0;
+    margin: 0;
+  }
+}

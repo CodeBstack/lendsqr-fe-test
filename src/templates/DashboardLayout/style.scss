@@ -1,0 +1,51 @@
+.DashboardLayout {
+  aside ul {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .logo_shadow {
+    box-shadow: 3px 0px 20px rgba(0, 0, 0, 0.04);
+  }
+
+  main {
+    flex-grow: 2;
+  }
+
+  .content {
+    height: fit-content;
+  }
+
+  svg.stroked-icon path {
+    stroke: currentColor;
+  }
+
+  svg.filled-icon path {
+    fill: currentColor;
+  }
+
+  .menu-link {
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+    font-weight: 400;
+    transition: all 250ms ease-in-out;
+
+
+
+    &.no-bg {
+      background-color: transparent;
+      padding: 0;
+    }
+  }
+
+  .title {
+    @apply text-2xl lg:text-4xl font-bold;
+  }
+}
+
+.svgColorChange svg path {
+  stroke: white;
+}

@@ -1,0 +1,169 @@
+.my-table {
+  @apply  font-medium;
+  color: #3b3d3b;
+  &.alignLastTdRight {
+    thead th:last-of-type {
+      text-align: right;
+    }
+  }
+  .MuiPaper-root {
+    box-shadow: none;
+    > div:nth-child(2) {
+      gap: 1rem;
+      margin: 0;
+      > div {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+  &.scrollX {
+    .MuiPaper-root div table {
+      min-width: 1500px;
+    }
+  }
+
+  thead {
+    th:last-of-type {
+      text-align: left;
+    }
+    th {
+      border: none;
+      padding: 16px 18px;
+      button.MuiButton-root {
+        padding: 0.5rem 0 !important;
+        font-size: 1rem !important;
+        width: max-content;
+        font-weight: 500;
+        text-transform: capitalize;
+      }
+    }
+  }
+  tr {
+    border-bottom: 10px solid white;
+    td:first-of-type,
+    th:first-of-type {
+      border-radius: 10px 0 0 10px;
+    }
+    td:last-of-type,
+    th:last-of-type {
+      border-radius: 0 10px 10px 0;
+    }
+    td {
+      padding: 16px 20px;
+    }
+  }
+
+  td,
+  th {
+    font-weight: 500;
+    background-color: rgb(249, 250, 251) !important;
+  }
+
+  tbody {
+    .MuiChip-root {
+      border-radius: 8px;
+      &.MuiChip-colorSuccess {
+        background-color: #d1fadf;
+        color: #039855;
+        span::before {
+          background-color: #039855;
+        }
+      }
+      &.MuiChip-colorSecondary {
+        background-color: #f3ecfd;
+        color: #440e98;
+        span::before {
+          background-color: #440e98;
+        }
+      }
+      &.MuiChip-colorError {
+        background-color: #d92d201a;
+        color: #d92d20;
+        span::before {
+          background-color: #d92d20;
+        }
+      }
+      &.MuiChip-colorWarning {
+        background-color: #fcecd9;
+        color: #d27400;
+        span::before {
+          background-color: #d27400;
+        }
+      }
+      span::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 100%;
+        background-color: inherit;
+        display: inline-block;
+        margin-right: 6px;
+      }
+    }
+  }
+
+  .MUIDataTableFilterList-root {
+    gap: 0.5rem;
+    margin: 0;
+    margin-bottom: 0.5rem;
+  }
+  .MuiToolbar-root {
+    padding: 0;
+    flex-wrap: wrap;
+    & > div:nth-child(2) {
+      justify-content: flex-end;
+      display: flex;
+    }
+  }
+  .drop-down-action,
+  .drop-down-wrapper {
+    width: max-content;
+    margin-left: auto;
+    .drop-down-content {
+      button,
+      a {
+        margin-bottom: 0.5rem;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  tfoot.MuiTableFooter-root {
+    td > div {
+      padding-inline: 16px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    td {
+      padding: 0;
+    }
+    @media (max-width: 500px) {
+      .MuiToolbar-root {
+        justify-content: space-between;
+        width: 100%;
+        .MuiInputBase-root {
+          margin-right: 0;
+        }
+        p {
+          width: 50%;
+        }
+      }
+    }
+  }
+
+  &.my-table-2 {
+    tbody .MuiChip-root span::before {
+      display: none;
+    }
+  }
+}
+.MuiModal-root .MuiPaper-root {
+  fieldset {
+    padding: 1rem;
+  }
+  .MuiGrid-root {
+    min-width: 120px;
+  }
+}
