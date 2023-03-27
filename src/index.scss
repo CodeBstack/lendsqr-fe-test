@@ -53,3 +53,22 @@ body {
 .dashboard_box_shadow {
   box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
 }
+
+.noScrollBar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    display: none;
+  }
+
+  &.white-scrollbar {
+    &::-webkit-scrollbar-thumb {
+      display: none;
+    }
+  }
+}
