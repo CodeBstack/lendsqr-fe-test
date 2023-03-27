@@ -126,7 +126,14 @@ export default function EnhancedTable({
       `${eachData.createdAt}`
     ).format('lll')}`,
     status: (
-      <Chip label="Blacklist" color="error" />
+      <Chip
+        label={
+          i % 2 === 0 ? 'Inactive' : 'BlackList'
+        }
+        color={
+          i % 2 === 0 ? 'error' : 'error'
+        }
+      />
     ),
     actions: (
       <>
@@ -142,17 +149,17 @@ export default function EnhancedTable({
             </IconButton>
           }
         >
-          <div className="w-full font-medium text-sm divide-x text-primary_300 h-full p-2">
+          <div className="w-full font-medium text-sm divide-x text-primary_300 h-full p-3">
             <Link
               to={`/dashboard/users/${eachData.id}`}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 "
             >
               <ViewIcon /> View Details
             </Link>
-            <button className="flex items-center gap-2">
+            <button className="flex items-center gap-2 py-3 ">
               <DeleteFriendIcon /> Blacklist User
             </button>
-            <button className="flex items-center gap-2">
+            <button className="flex items-center gap-2 ">
               <ActivateFriendIcon /> Activate User
             </button>
           </div>

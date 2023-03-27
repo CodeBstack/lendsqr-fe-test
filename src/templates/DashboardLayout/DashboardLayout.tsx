@@ -23,6 +23,7 @@ import DropDownWrapper from '../../Components/DropDownWrapper';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CircularLoader from '../../Components/CircularLoader';
 import ErrorMsg from '../../Components/ErrorMsg';
+import NotifIcon from '../../Components/Vectors/NotifIcon';
 
 type Props = {
   type?: string;
@@ -75,18 +76,7 @@ function DashboardLayout({
           }
         >
           <div className="w-full font-medium text-sm divide-x text-primary_300 h-full p-2">
-            {/* <Link
-              to={`/dashboard/users/${eachData.id}`}
-              className="flex items-center gap-2"
-            >
-              <ViewIcon /> View Details
-            </Link>
-            <button className="flex items-center gap-2">
-              <DeleteFriendIcon /> Blacklist User
-            </button>
-            <button className="flex items-center gap-2">
-              <ActivateFriendIcon /> Activate User
-            </button> */}
+            <button className="">Switch</button>
           </div>
         </DropDownWrapper>
 
@@ -235,9 +225,7 @@ function DashboardLayout({
                 color="primary"
                 badgeContent={5}
               >
-                <NotificationsNoneOutlinedIcon
-                  sx={{ color: '#000000' }}
-                />
+                <NotifIcon />
               </Badge>
             </IconButton>
             <IconButton
@@ -277,9 +265,7 @@ function DashboardLayout({
               to={`/${type}/notifications`}
               sx={{ backgroundColor: '#ffffff' }}
             >
-              <NotificationsNoneOutlinedIcon
-                sx={{ color: '#213F7D' }}
-              />
+              <NotifIcon />
             </IconButton>
             <Link
               to={`/${type}/account`}
@@ -294,10 +280,10 @@ function DashboardLayout({
             </Link>
           </div>
         </nav>
-        {isLoading ? (
-          <CircularLoader />
-        ) : error ? (
+        {error ? (
           <ErrorMsg error={error} />
+        ) : isLoading ? (
+          <CircularLoader />
         ) : (
           <div className="flex-grow p-4 md:p-6 lg:p-[60px]">
             {children || <Outlet />}

@@ -1,4 +1,5 @@
 import { Avatar } from '@mui/material';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 type Props = {
   name: string;
@@ -76,9 +77,9 @@ Props) {
               : 'text-grey_20'
           } ${
             fontSize ? fontSize : 'font-medium'
-          }  font-Bai capitalize`}
+          }  font-Bai capitalize flex gap-1.5 items-center`}
         >
-          {name}
+          {name} <ArrowDropDownIcon />
         </p>
         {email && (
           <p
