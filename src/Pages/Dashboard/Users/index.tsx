@@ -1,9 +1,11 @@
+import { useState, useEffect } from 'react';
 import EnhancedTable from '../../../Components/TableComponent/MyDataTable';
 import MyDataTable from '../../../Components/TableComponent/MyDataTable';
 import LoanIcon2 from '../../../Components/Vectors/LoanIcon2';
 import MoneyIcon from '../../../Components/Vectors/MoneyIcon';
 import UserIcon2 from '../../../Components/Vectors/UserIcon2';
 import UserIcon3 from '../../../Components/Vectors/UserIcon3';
+import { DataProps } from '../../../Services/model';
 import DashboardLayout from '../../../templates/DashboardLayout/DashboardLayout';
 import DashboardBox from '../../../templates/DashboardLayout/widgets/DashboardBox';
 
@@ -12,8 +14,32 @@ interface DashboardProps {}
 const Users: React.FunctionComponent<
   DashboardProps
 > = () => {
+  const [data, setData] = useState<DataProps[]>(
+    []
+  );
+  const [loading, setLoading] =
+    useState<boolean>(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch(
+      `https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users/`
+    )
+      .then((res) => res.json())
+      .then((resData) => {
+        setData(resData);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+      });
+  }, []);
   return (
-    <DashboardLayout>
+    <DashboardLayout
+      isLoading={loading}
+      error={error}
+    >
       <main className="">
         <h4 className="font-medium text-2xl text-primary_200 mb-6 md:mb-10">
           Users
@@ -46,7 +72,7 @@ const Users: React.FunctionComponent<
           />
         </div>
 
-        <EnhancedTable />
+        <EnhancedTable data={data} />
       </main>
     </DashboardLayout>
   );

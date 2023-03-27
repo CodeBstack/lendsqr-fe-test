@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, {
+  useEffect,
+  useState,
+} from 'react';
 import {
   useNavigate,
   useParams,
@@ -14,10 +17,34 @@ import BankDetails from './Tabs/BankDetails';
 import Loans from './Tabs/Loans';
 import Savings from './Tabs/Savings';
 import AppsAndSystem from './Tabs/AppsAndSystem';
+import { DataProps } from '../../../Services/model';
 
 const EachUser = () => {
   const [presentStep, setPresentStep] =
     useState<number>(1);
+  const [data, setData] =
+    React.useState<DataProps>();
+  const { id } = useParams();
+
+  const [loading, setLoading] =
+    useState<boolean>(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch(
+      `https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users/${id}`
+    )
+      .then((res) => res.json())
+      .then((resData) => {
+        setData(resData);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+      });
+  }, []);
+
 
   interface StepComponents {
     1: JSX.Element;
@@ -29,16 +56,15 @@ const EachUser = () => {
   }
 
   let stepComponents: StepComponents = {
-    1: <GeneralDetails />,
+    1: <GeneralDetails myId={id} />,
     2: <Document />,
     3: <BankDetails />,
     4: <Loans />,
     5: <Savings />,
     6: <AppsAndSystem />,
   };
-  const { id } = useParams();
   return (
-    <DashboardLayout>
+    <DashboardLayout isLoading={loading} error={error}>
       <main>
         <BackBtn />
 
@@ -60,16 +86,24 @@ const EachUser = () => {
         <div className="rounded-[4px] bg-white mt-10 p-4 md:p-[30px] !pb-0">
           <div className="flex flex-wrap gap-y-4">
             <div className="flex gap-5 items-center border-r border-primary_300/[0.2] pr-[30px]">
-              <div className="rounded-full bg-primary_200 bg-opacity-[0.16] w-[100px] h-[100px] flex justify-center items-center">
-                <UserProfileIcon />
-              </div>
-
+              {data?.profile.avatar ? (
+                <img
+                  src={data?.profile.avatar}
+                  alt={data?.userName}
+                  className="rounded-full w-[100px] h-[100px]"
+                />
+              ) : (
+                <div className="rounded-full bg-primary_200 bg-opacity-[0.16] w-[100px] h-[100px] flex justify-center items-center">
+                  <UserProfileIcon />
+                </div>
+              )}
               <div>
                 <p className="font-medium text-primary_200 text-xl md:text-2xl">
-                  Grace Effiom
+                  {data?.profile.firstName}{' '}
+                  {data?.profile.lastName}
                 </p>
                 <p className="font-normal text-primary_300 text-sm">
-                  LSQFf587g90{' '}
+                  {data?.userName}
                 </p>
               </div>
             </div>
@@ -97,10 +131,11 @@ const EachUser = () => {
 
             <div className="pl-[30px] flex flex-col justify-center items-center">
               <p className="font-medium text-primary_200 text-xl md:text-2xl">
-                ₦200,000.00
+                ₦{data?.accountBalance}
               </p>
               <p className="font-normal mb-2 text-primary_200 text-xs">
-                9912345678/Providus Bank{' '}
+                {data?.accountNumber}/Providus
+                Bank{' '}
               </p>
             </div>
           </div>

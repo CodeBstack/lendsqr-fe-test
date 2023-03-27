@@ -1,11 +1,24 @@
 .my-table {
   @apply font-normal font-WorkSans text-sm text-primary_300;
 
-  .MuiTableCell-root {
-    font-family: 'Work Sans', sans-serif !important;
-    font-weight: 400 !important;
-    color: #545F7D !important;
-    cursor: default;
+
+
+  .MuiTableContainer-root {
+    &::-webkit-scrollbar {
+      display: none !important;
+
+    }
+  }
+
+  &.scrollX {
+    .MuiPaper-root div table {
+      min-width: 1100px;
+
+      &::-webkit-scrollbar {
+        display: none !important;
+      }
+
+    }
   }
 
   .MuiPaper-root {
@@ -19,178 +32,174 @@
         margin-bottom: 1rem;
       }
     }
-  }
-
-  &.scrollX {
-    .MuiPaper-root div table {
-      min-width: 1100px;
-    }
-  }
 
 
-  thead {
-    th:last-of-type {
-      text-align: left;
-    }
-
-    th {
-      border: none;
-
-      padding: 0 !important;
-
-      button.MuiButton-root {
-        padding: 0.5rem 0 !important;
-        font-size: 1rem !important;
-        width: max-content;
-        font-weight: 500;
-        text-transform: capitalize;
-      }
-    }
-  }
-
-  tr {
-
-    td:first-of-type,
-    th:first-of-type {
-      border-radius: 10px 0 0 10px;
-    }
-
-    td:last-of-type,
-    th:last-of-type {
-      border-radius: 0 10px 10px 0;
-    }
-
-    td {
-      padding: 23px 0 !important;
-      // padding: 16px 20px;
-    }
-  }
-
-  td,
-  th {
-    font-weight: 500;
-    // background-color: rgb(249, 250, 251) !important;
-  }
-
-  tbody {
-    .MuiChip-label {
-      font-size: 14px !important;
-      font-weight: 400 !important;
-    }
-
-    .MuiChip-root {
-      font-family: 'Work Sans', sans-serif !important;
-      border-radius: 100px;
-      width: fit-content !important;
-
-      &.MuiChip-colorSuccess {
-        @apply bg-[#39CD62]/[0.06];
-        color: #39CD62;
 
 
+
+    thead {
+      th:last-of-type {
+        text-align: left;
       }
 
-      &.MuiChip-colorSecondary {
-        @apply bg-[#545F7D]/[0.06];
-        color: #545F7D;
-
-
+      .MuiTableCell-root {
+        font-family: 'Work Sans', sans-serif !important;
+        font-weight: 600 !important;
+        color: #545F7D !important;
+        cursor: default;
       }
 
-      &.MuiChip-colorError {
-        @apply bg-[#E4033B]/[0.06];
-        color: #E4033B;
+      th {
+        border: none;
+        font-weight: semibold !important;
+        font-size: 12px !important;
+        padding: 0 !important;
 
-
-      }
-
-      &.MuiChip-colorWarning {
-        @apply bg-[#E9B200]/[0.06];
-        color: #E9B200;
-
-
-      }
-    }
-  }
-
-  .MUIDataTableFilterList-root {
-    gap: 0.5rem;
-    margin: 0;
-    margin-bottom: 0.5rem;
-  }
-
-  .MuiToolbar-root {
-    padding: 0;
-    flex-wrap: wrap;
-
-    &>div:nth-child(2) {
-      justify-content: flex-end;
-      display: flex;
-    }
-  }
-
-  .drop-down-action,
-  .drop-down-wrapper {
-    width: max-content;
-    margin-left: auto;
-
-    .drop-down-content {
-
-      button,
-      a {
-        margin-bottom: 0.5rem;
-
-        &:last-child {
-          margin-bottom: 0;
+        button.MuiButton-root {
+          padding: 0.5rem 0 !important;
+          font-size: 1rem !important;
+          width: max-content;
+          // font-weight: 500;
+          text-transform: capitalize;
         }
       }
     }
-  }
 
-  tfoot.MuiTableFooter-root {
-    td>div {
-      padding-inline: 16px;
-      flex-wrap: wrap;
-      justify-content: space-between;
+    tr {
+      td {
+        padding: 23px 0 !important;
+      }
     }
 
-    td {
+
+
+    tbody {
+      .MuiChip-label {
+        font-size: 14px !important;
+        font-weight: 400 !important;
+      }
+
+      .MuiTableCell-root {
+        font-family: 'Work Sans', sans-serif !important;
+        font-weight: 400 !important;
+        color: #545F7D !important;
+        cursor: default;
+      }
+
+      .MuiChip-root {
+        font-family: 'Work Sans', sans-serif !important;
+        border-radius: 100px;
+        width: fit-content !important;
+
+        &.MuiChip-colorSuccess {
+          @apply bg-[#39CD62]/[0.06];
+          color: #39CD62;
+
+
+        }
+
+        &.MuiChip-colorSecondary {
+          @apply bg-[#545F7D]/[0.06];
+          color: #545F7D;
+
+
+        }
+
+        &.MuiChip-colorError {
+          @apply bg-[#E4033B]/[0.06];
+          color: #E4033B;
+
+
+        }
+
+        &.MuiChip-colorWarning {
+          @apply bg-[#E9B200]/[0.06];
+          color: #E9B200;
+
+
+        }
+      }
+    }
+
+    .MUIDataTableFilterList-root {
+      gap: 0.5rem;
+      margin: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    .MuiToolbar-root {
       padding: 0;
+      flex-wrap: wrap;
+
+      &>div:nth-child(2) {
+        justify-content: flex-end;
+        display: flex;
+      }
     }
 
-    @media (max-width: 500px) {
-      .MuiToolbar-root {
+    .drop-down-action,
+    .drop-down-wrapper {
+      width: max-content;
+      margin-left: auto;
+
+      .drop-down-content {
+
+        button,
+        a {
+          margin-bottom: 0.5rem;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+
+    tfoot.MuiTableFooter-root {
+      td>div {
+        padding-inline: 16px;
+        flex-wrap: wrap;
         justify-content: space-between;
-        width: 100%;
+      }
 
-        .MuiInputBase-root {
-          margin-right: 0;
-        }
+      td {
+        padding: 0;
+      }
 
-        p {
-          width: 50%;
+      @media (max-width: 500px) {
+        .MuiToolbar-root {
+          justify-content: space-between;
+          width: 100%;
+
+          .MuiInputBase-root {
+            margin-right: 0;
+          }
+
+          p {
+            width: 50%;
+          }
         }
+      }
+    }
+
+    &.my-table-2 {
+      tbody .MuiChip-root span::before {
+        display: none;
       }
     }
   }
 
-  &.my-table-2 {
-    tbody .MuiChip-root span::before {
-      display: none;
+  .MuiModal-root .MuiPaper-root {
+    fieldset {
+      padding: 1rem;
+    }
+
+    .MuiGrid-root {
+      min-width: 120px;
     }
   }
+
 }
-
-.MuiModal-root .MuiPaper-root {
-  fieldset {
-    padding: 1rem;
-  }
-
-  .MuiGrid-root {
-    min-width: 120px;
-  }
-}
-
 
 .form-dropdown {
   position: absolute;

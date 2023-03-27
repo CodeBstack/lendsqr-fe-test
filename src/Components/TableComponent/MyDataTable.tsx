@@ -1,4 +1,3 @@
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import * as React from 'react';
 import './style.scss';
 import Table from '@mui/material/Table';
@@ -10,6 +9,7 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Tooltip from '@mui/material/Tooltip';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import {
   Chip,
   IconButton,
@@ -97,29 +97,23 @@ function EnhancedTableHead(
   );
 }
 
-export default function EnhancedTable() {
+interface EnhancedTableProps2 {
+  data: DataProps[];
+}
+
+export default function EnhancedTable({
+  data,
+}: EnhancedTableProps2) {
   const [
     showFilterDropdown,
     setshowFilterDropdown,
   ] = React.useState<boolean>(false);
 
   const [page, setPage] = React.useState(0);
-  const [data, setData] = React.useState<
-    DataProps[]
-  >([]);
+
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] =
     React.useState(9);
-
-  React.useEffect(() => {
-    fetch(
-      'https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users'
-    )
-      .then((res) => res.json())
-      .then((resData) => setData(resData));
-  }, []);
-
-  console.log(data);
 
   const mockData = data?.map((eachData, i) => ({
     organization: `${eachData.orgName

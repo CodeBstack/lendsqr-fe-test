@@ -19,6 +19,10 @@ import BriefcaseIcon from '../../Components/Vectors/BriefcaseIcon';
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 import IsolatedLogoIcon from '../../Components/Vectors/IsolatedLogoIcon';
 import InputField2 from '../../Components/SearchInput';
+import DropDownWrapper from '../../Components/DropDownWrapper';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import CircularLoader from '../../Components/CircularLoader';
+import ErrorMsg from '../../Components/ErrorMsg';
 
 type Props = {
   type?: string;
@@ -26,13 +30,15 @@ type Props = {
   title?: string;
   showSearchBar?: boolean;
   isLoading?: boolean;
+  error?: any;
   overflow_Y_hidden?: boolean;
 };
 
 function DashboardLayout({
   type = 'dashboard',
   children,
-  title,
+  isLoading,
+  error,
 }: Props) {
   const [isSideBarOpen, setIsSideBarOpen] =
     useState(false);
@@ -55,13 +61,34 @@ function DashboardLayout({
         </div>
 
         {/* SWITCH ORGANIZATION */}
-        <div className="flex gap-2.5 items-center mt-5 md:mt-10 pl-4 lg:pl-[30px]">
-          <BriefcaseIcon />
-          <p className="text-base text-primary_200 font-normal">
-            Switch Organization
-          </p>
-          <KeyboardArrowDownOutlinedIcon />
-        </div>
+        <DropDownWrapper
+          position="right"
+          className="more-actions"
+          action={
+            <div className="cursor-pointer flex gap-2.5 items-center mt-5 md:mt-10 pl-4 lg:pl-[30px]">
+              <BriefcaseIcon />
+              <p className="text-base text-primary_200 font-normal">
+                Switch Organization
+              </p>
+              <KeyboardArrowDownOutlinedIcon />
+            </div>
+          }
+        >
+          <div className="w-full font-medium text-sm divide-x text-primary_300 h-full p-2">
+            {/* <Link
+              to={`/dashboard/users/${eachData.id}`}
+              className="flex items-center gap-2"
+            >
+              <ViewIcon /> View Details
+            </Link>
+            <button className="flex items-center gap-2">
+              <DeleteFriendIcon /> Blacklist User
+            </button>
+            <button className="flex items-center gap-2">
+              <ActivateFriendIcon /> Activate User
+            </button> */}
+          </div>
+        </DropDownWrapper>
 
         {/* links */}
         <ul
@@ -74,7 +101,10 @@ function DashboardLayout({
             key={'dashboard'}
             className="min-w-[52px] "
           >
-            <CustomLink baseUrl={`/dashboard`} to={`/dashboard`}>
+            <CustomLink
+              baseUrl={`/dashboard`}
+              to={`/dashboard`}
+            >
               <Tooltip
                 placement="right-end"
                 title={'Dashboard'}
@@ -264,9 +294,15 @@ function DashboardLayout({
             </Link>
           </div>
         </nav>
-        <div className="flex-grow p-4 md:p-6 lg:p-[60px]">
-          {children || <Outlet />}
-        </div>
+        {isLoading ? (
+          <CircularLoader />
+        ) : error ? (
+          <ErrorMsg error={error} />
+        ) : (
+          <div className="flex-grow p-4 md:p-6 lg:p-[60px]">
+            {children || <Outlet />}
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,8 +1,139 @@
-interface GeneralDetailsProps {}
+import { useEffect, useState } from 'react';
+import { DataProps } from '../../../../Services/model';
 
-const GeneralDetails: React.FunctionComponent<
-  GeneralDetailsProps
-> = () => {
+interface GeneralDetailsProps {
+  myId: number | string | undefined;
+}
+
+const GeneralDetails = ({
+  myId,
+}: GeneralDetailsProps) => {
+  const [data, setData] = useState<DataProps>();
+  const [loading, setLoading] =
+    useState<boolean>(false);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch(
+      `https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users/${myId}`
+    )
+      .then((res) => res.json())
+      .then((resData) => {
+        setData(resData);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(true);
+      });
+  }, []);
+
+  const personalInformationObj = [
+    {
+      label: 'Full name',
+      value: `${data?.profile.firstName}`,
+      value2: `${data?.profile.lastName}`,
+    },
+    {
+      label: 'phone number',
+      value: `${data?.profile.phoneNumber}`,
+    },
+    {
+      label: 'email',
+      value: `${data?.email}`,
+    },
+    {
+      label: 'bvn',
+      value: `368681174`,
+    },
+    {
+      label: 'gender',
+      value: `${data?.profile.gender}`,
+    },
+    {
+      label: 'marital status',
+      value: `Single`,
+    },
+    {
+      label: 'children',
+      value: `None`,
+    },
+    {
+      label: 'Type of residence',
+      value: "Parent's apartment",
+    },
+  ];
+  const EducObj = [
+    {
+      label: 'level of education',
+      value: `${
+        data?.education.level === 'Bsc'
+          ? 'B.Sc'
+          : data?.education.level
+      }`,
+    },
+    {
+      label: 'employment status',
+      value: `${data?.education.employmentStatus}`,
+    },
+    {
+      label: 'sector of employment',
+      value: `${data?.education.sector}`,
+    },
+    {
+      label: 'duration of employment',
+      value: `${data?.education.duration}`,
+    },
+    {
+      label: 'office email',
+      value: `${data?.education.officeEmail}`,
+    },
+    {
+      label: 'monthly income',
+      value: `₦169.47`,
+      value2: `- ₦618.34`,
+    },
+    {
+      label: 'loan repayment',
+      value: `₦40,000`,
+    },
+  ];
+
+  const socialObj = [
+    {
+      label: 'twitter',
+      value: `${data?.socials.twitter}`,
+    },
+    {
+      label: 'facebook',
+      value: `${data?.socials.facebook}`,
+    },
+    {
+      label: 'instagram',
+      value: `${data?.socials.instagram}`,
+    },
+  ];
+
+  const guarantorObj = [
+    {
+      label: 'Full name',
+      value: `${data?.guarantor.firstName}`,
+      value2: `${data?.guarantor.lastName}`,
+    },
+    {
+      label: 'phone number',
+      value: `${data?.guarantor.phoneNumber}`,
+    },
+    {
+      label: 'email',
+      value: `${data?.email}`,
+    },
+    {
+      label: 'relationship',
+      value: 'Sister',
+    },
+  ];
+
   return (
     <div className="">
       <div className="personal">
@@ -10,19 +141,21 @@ const GeneralDetails: React.FunctionComponent<
           Personal Information
         </p>
 
-        <div className="py-[30px] border-b border-[#213F7D]/[0.1] grid gap-y-[30px] grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-          {Array(8)
-            .fill('')
-            .map((_, i) => (
+        <div className="py-[30px] border-b border-[#213F7D]/[0.1] grid gap-x-4 gap-y-[30px] grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+          {personalInformationObj.map(
+            (eachInfo, i) => (
               <div key={i}>
-                <p className="font-normal uppercase text-xs text-primary_300">
-                  full name
+                <p className="font-normal  uppercase text-xs text-primary_300">
+                  {eachInfo.label}
                 </p>
-                <p className="font-medium text-base text-primary_300">
-                  Grace Effiom
+                <p className="font-medium break-words text-base text-primary_300">
+                  {eachInfo.value}{' '}
+                  {eachInfo.value2 &&
+                    eachInfo.value2}
                 </p>
               </div>
-            ))}
+            )
+          )}
         </div>
       </div>
       <div className="education pt-[30px]">
@@ -30,19 +163,17 @@ const GeneralDetails: React.FunctionComponent<
           Education and Employment{' '}
         </p>
 
-        <div className="py-[30px] border-b border-[#213F7D]/[0.1] grid gap-y-[30px] grid-cols-2 sm:grid-cols-3 md:grid-cols-4 ">
-          {Array(7)
-            .fill('')
-            .map((_, i) => (
-              <div key={i}>
-                <p className="font-normal uppercase text-xs text-primary_300">
-                  full name
-                </p>
-                <p className="font-medium text-base text-primary_300">
-                  Grace Effiom
-                </p>
-              </div>
-            ))}
+        <div className="py-[30px] border-b border-[#213F7D]/[0.1] grid gap-x-4 gap-y-[30px] grid-cols-2 sm:grid-cols-3 md:grid-cols-4 ">
+          {EducObj.map((eachInfo, i) => (
+            <div key={i}>
+              <p className="font-normal  uppercase text-xs text-primary_300">
+                {eachInfo.label}
+              </p>
+              <p className="font-medium text-base break-words text-primary_300">
+                {eachInfo.value} {eachInfo.value2}
+              </p>
+            </div>
+          ))}
         </div>
       </div>{' '}
       <div className="socials pt-[30px]">
@@ -50,19 +181,17 @@ const GeneralDetails: React.FunctionComponent<
           Socials{' '}
         </p>
 
-        <div className="py-[30px] border-b border-[#213F7D]/[0.1] grid gap-y-[30px] grid-cols-2 sm:grid-cols-3 md:grid-cols-4 ">
-          {Array(3)
-            .fill('')
-            .map((_, i) => (
-              <div key={i}>
-                <p className="font-normal uppercase text-xs text-primary_300">
-                  full name
-                </p>
-                <p className="font-medium text-base text-primary_300">
-                  Grace Effiom
-                </p>
-              </div>
-            ))}
+        <div className="py-[30px] border-b border-[#213F7D]/[0.1] grid gap-x-4 gap-y-[30px] grid-cols-2 sm:grid-cols-3 md:grid-cols-4 ">
+          {socialObj.map((eachInfo, i) => (
+            <div key={i}>
+              <p className="font-normal  uppercase text-xs text-primary_300">
+                {eachInfo.label}{' '}
+              </p>
+              <p className="font-medium text-base break-words text-primary_300">
+                {eachInfo.value}{' '}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
       <div className="guarantor pt-[30px]">
@@ -70,19 +199,19 @@ const GeneralDetails: React.FunctionComponent<
           Guarantor{' '}
         </p>
 
-        <div className="py-[30px] grid gap-y-[30px] grid-cols-2 sm:grid-cols-3 md:grid-cols-4 ">
-          {Array(4)
-            .fill('')
-            .map((_, i) => (
-              <div key={i}>
-                <p className="font-normal uppercase text-xs text-primary_300">
-                  full name
-                </p>
-                <p className="font-medium text-base text-primary_300">
-                  Grace Effiom
-                </p>
-              </div>
-            ))}
+        <div className="py-[30px] grid gap-x-4 gap-y-[30px] grid-cols-2 sm:grid-cols-3 md:grid-cols-4 ">
+          {guarantorObj.map((eachInfo, i) => (
+            <div key={i}>
+              <p className="font-normal  uppercase text-xs text-primary_300">
+                {eachInfo.label}{' '}
+              </p>
+              <p className="font-medium text-base break-words text-primary_300">
+                {eachInfo.value}{' '}
+                {eachInfo.value2 &&
+                  eachInfo.value2}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
