@@ -280,9 +280,7 @@ function DashboardLayout({
             </Link>
           </div>
         </nav>
-        {error ? (
-          <ErrorMsg error={error} />
-        ) : isLoading ? (
+        {isLoading ? (
           <CircularLoader />
         ) : (
           <div className="flex-grow p-4 md:p-6 lg:p-[60px]">
