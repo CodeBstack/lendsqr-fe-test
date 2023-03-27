@@ -1,4 +1,4 @@
-// import MyDataTable from '../../../Components/TableComponent/MyDataTable';
+import EnhancedTable from '../../../Components/TableComponent/MyDataTable';
 import MyDataTable from '../../../Components/TableComponent/MyDataTable';
 import LoanIcon2 from '../../../Components/Vectors/LoanIcon2';
 import MoneyIcon from '../../../Components/Vectors/MoneyIcon';
@@ -22,31 +22,31 @@ const Users: React.FunctionComponent<
         <div className="mb-10 grid gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           <DashboardBox
             icon={<UserIcon3 />}
-            iconBg='bg-[#DF18FF]'
+            iconBg="bg-[#DF18FF]"
             value="2,453"
             text="Users"
           />
           <DashboardBox
             icon={<UserIcon2 />}
-            iconBg='bg-[#5718FF]'
+            iconBg="bg-[#5718FF]"
             value="2,453"
             text="Active Users"
           />
           <DashboardBox
             icon={<LoanIcon2 />}
-            iconBg='bg-[#F55F44]'
+            iconBg="bg-[#F55F44]"
             value="12,453"
             text="Users with loans"
           />
           <DashboardBox
             icon={<MoneyIcon />}
-            iconBg='bg-[#FF3366]'
+            iconBg="bg-[#FF3366]"
             value="102,453"
             text="Users with savings"
           />
         </div>
 
-        {/* <MyDataTable/> */}
+        <EnhancedTable />
       </main>
     </DashboardLayout>
   );
