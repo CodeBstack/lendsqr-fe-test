@@ -19,6 +19,7 @@ const SearchInput: React.FC<Props> = ({
         ref={inputRef}
         type={type || 'text'}
         defaultValue=""
+        required
         // onChange={(e) => }
         placeholder={placeholder}
         className="input__box"

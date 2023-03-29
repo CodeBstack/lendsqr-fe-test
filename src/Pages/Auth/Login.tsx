@@ -35,7 +35,7 @@ const Login: React.FC = () => {
             className="mt-[60px] w-full flex flex-col gap-6"
           >
             <InputField
-              type="text"
+              type="email"
               placeholder="Email"
             />
             <InputField

@@ -19,6 +19,7 @@ const InputField: React.FC<Props> = ({
         ref={inputRef}
         type={showPassword ? 'text' : type}
         defaultValue=""
+        required
         // onChange={(e) => setTodo(e.target.value)}
         placeholder={placeholder}
         className="input__box"
