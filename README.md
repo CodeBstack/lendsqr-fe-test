@@ -1,12 +1,26 @@
-# Getting Started with Create React App
+# Lendsqr
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Lendsqr is a cloud-based, lending platform designed for small and medium-sized lenders, providing smart features at a zero upfront cost. It's a really sophisticated and easy to use app ensuring lenders manage their risk to the minimal level and reduce inefficiencies.
 
-## Available Scripts
+Click [demo](https://samuel-sunmonu-lendsqr-fe-test.vercel.app/) to view the application. 
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+Clone down this repository. You will need node and npm installed globally on your machine to be able to have access to this.
+
+
+
+Go to the project directory:
+
+ #  `cd lendsqr`
+
+Install dependencies:
+
+ # `npm install`
+
+Start the server:
+
+# `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
