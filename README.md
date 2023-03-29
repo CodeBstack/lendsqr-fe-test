@@ -9,7 +9,7 @@ Click [demo](https://samuel-sunmonu-lendsqr-fe-test.vercel.app/) to view the app
 Clone down this repository. You will need node and npm installed globally on your machine to be able to have access to this.
 
 ```bash
-  git clone https://github.com/Jplayskeys/Lendsqr.git
+  git clone git@github.com:CodeBstack/lendsqr-fe-test.git
 ```
 
 Go to the project directory:
