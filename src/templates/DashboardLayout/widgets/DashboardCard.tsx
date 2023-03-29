@@ -7,7 +7,7 @@ interface Props {
   stats?: string;
 }
 
-const DashboardBox = ({
+const DashboardCard = ({
   icon,
   iconBg,
   bg,
@@ -20,7 +20,6 @@ const DashboardBox = ({
         bg || 'bg-white'
       }`}
     >
-      {/* <div className="mb-2 flex items-center gap-3"> */}
       <span
         className={`bg-opacity-10 mb-[2px] icon-box flex h-[40px] w-[40px] items-center justify-center rounded-full ${
           iconBg || 'bg-white'
@@ -33,7 +32,6 @@ const DashboardBox = ({
           {text?.toUpperCase()}
         </p>
       </div>
-      {/* </div> */}
       {value && (
         <h4 className="text-2xl font-semibold text-primary_200">
           {value}
@@ -43,4 +41,4 @@ const DashboardBox = ({
   );
 };
 
-export default DashboardBox;
+export default DashboardCard;

@@ -1,29 +1,29 @@
-import CustomLink from '../../Components/CustomRouteLink';
 import { createElement, useState } from 'react';
+import { Link, Outlet } from 'react-router-dom';
+
 import './style.scss';
-import LogoIcon from '../../Components/Vectors/LogoIcon';
-import MenuLinks from './widgets/MenuLinks';
+
 import {
   Badge,
   IconButton,
   Tooltip,
 } from '@mui/material';
-import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
-import { Link, Outlet } from 'react-router-dom';
 
+import MenuLinks from './widgets/MenuLinks';
+import CustomLink from '../../Components/CustomRouteLink';
+import LogoIcon from '../../Components/Vectors/LogoIcon';
+import DropDownWrapper from '../../Components/DropDownWrapper';
+import UserDisplay from '../../Components/TableComponent/UserDisplay';
+import CircularLoader from '../../Components/CircularLoader';
+import InputField2 from '../../Components/SearchInput';
+
+import BriefcaseIcon from '../../Components/Vectors/BriefcaseIcon';
+import NotifIcon from '../../Components/Vectors/NotifIcon';
+import IsolatedLogoIcon from '../../Components/Vectors/IsolatedLogoIcon';
+import HomeIcon from '../../Components/Vectors/HomeIcon';
+import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import UserDisplay from '../../Components/TableComponent/UserDisplay';
-import HomeIcon from '../../Components/Vectors/HomeIcon';
-import BriefcaseIcon from '../../Components/Vectors/BriefcaseIcon';
-import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
-import IsolatedLogoIcon from '../../Components/Vectors/IsolatedLogoIcon';
-import InputField2 from '../../Components/SearchInput';
-import DropDownWrapper from '../../Components/DropDownWrapper';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import CircularLoader from '../../Components/CircularLoader';
-import ErrorMsg from '../../Components/ErrorMsg';
-import NotifIcon from '../../Components/Vectors/NotifIcon';
 
 type Props = {
   type?: string;

@@ -6,7 +6,6 @@ import CoinsSolidIcon from '../../../Components/Vectors/CoinsSolidIcon';
 import GalaxyIcon from '../../../Components/Vectors/GalaxyIcon';
 import HandHoldingIcon from '../../../Components/Vectors/HandHoldingIcon';
 import HandshakeIcon from '../../../Components/Vectors/HandshakeIcon';
-import HomeIcon from '../../../Components/Vectors/HomeIcon';
 import MoneySackIcon from '../../../Components/Vectors/MoneySackIcon';
 import NpBankIcon from '../../../Components/Vectors/NpBankIcon';
 import PiggyBankIcon from '../../../Components/Vectors/PiggyBankIcon';
@@ -18,18 +17,6 @@ import UserCogIcon from '../../../Components/Vectors/UserCogIcon';
 import UserFriendsIcon from '../../../Components/Vectors/UserFriendsIcon';
 import UsersIcon from '../../../Components/Vectors/UsersIcon';
 import UserTimesIcon from '../../../Components/Vectors/UserTimesIcon';
-// import UserCircleIcon from "components/Vectors/user-circle";
-// import UserIcon from "components/Vectors/user";
-// import CreditCardIcon from "components/Vectors/credit-card";
-// import TicketIcon from "components/Vectors/ticket";
-// import JobIcon from "components/Vectors/JobIcon";
-// import EngagementIcon from "components/Vectors/EngagementIcon";
-// import JobRequestsIcon from "components/Vectors/JobRequestsIcon";
-// import TokenIcon from "components/Vectors/TokenIcon";
-// import ShieldTickIcon from "components/Vectors/ShieldTickIcon";
-// import BellIcon from "components/Vectors/BellIcon";
-
-// import LogoIcon from '../../../Components/Vectors/LogoIcon';
 
 interface Links {
   icon: React.FC;

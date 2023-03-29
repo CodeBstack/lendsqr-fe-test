@@ -20,7 +20,7 @@ import { Link } from 'react-router-dom';
 import ViewIcon from '../Vectors/ViewIcon';
 import DeleteFriendIcon from '../Vectors/DeleteFriendIcon';
 import ActivateFriendIcon from '../Vectors/ActivateFriendIcon';
-import { DataProps } from '../../Services/model';
+import { DataProps } from '../../features/model';
 import moment from 'moment';
 
 interface HeadCell {
@@ -75,8 +75,8 @@ function EnhancedTableHead(
   return (
     <TableHead>
       <TableRow>
-        {headCells.map((headCell) => (
-          <TableCell>
+        {headCells.map((headCell, i) => (
+          <TableCell key={i}>
             {headCell.label}
 
             <Tooltip title="Filter list">
@@ -130,9 +130,7 @@ export default function EnhancedTable({
         label={
           i % 2 === 0 ? 'Inactive' : 'BlackList'
         }
-        color={
-          i % 2 === 0 ? 'error' : 'error'
-        }
+        color={i % 2 === 0 ? 'error' : 'error'}
       />
     ),
     actions: (

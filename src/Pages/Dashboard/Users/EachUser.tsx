@@ -1,62 +1,76 @@
 import React, {
-  useEffect,
   useState,
+  useEffect,
 } from 'react';
 import {
   useNavigate,
   useParams,
 } from 'react-router-dom';
+
 import BackIcon from '../../../Components/Vectors/BackIcon';
 import UserProfileIcon from '../../../Components/Vectors/UserProfileIcon';
 import DashboardLayout from '../../../templates/DashboardLayout/DashboardLayout';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
+
 import GeneralDetails from './Tabs/GeneralDetails';
 import Document from './Tabs/Document';
 import BankDetails from './Tabs/BankDetails';
 import Loans from './Tabs/Loans';
 import Savings from './Tabs/Savings';
 import AppsAndSystem from './Tabs/AppsAndSystem';
-import { DataProps } from '../../../Services/model';
 
+import { useGetSingleUserQuery } from '../../../features/apiSlice';
+import { DataProps } from '../../../features/model';
+
+interface StepComponents {
+  1: JSX.Element;
+  2: JSX.Element;
+  3: JSX.Element;
+  4: JSX.Element;
+  5: JSX.Element;
+  6: JSX.Element;
+}
 const EachUser = () => {
   const [presentStep, setPresentStep] =
     useState<number>(1);
-  const [data, setData] =
-    React.useState<DataProps>();
+
   const { id } = useParams();
 
-  const [loading, setLoading] =
-    useState<boolean>(false);
-  const [error, setError] = useState(null);
+  const { data, isLoading, isError } =
+    useGetSingleUserQuery(`${id}`);
+
+  const [singleUser, setSingleUser] =
+    useState<DataProps>();
+  
+
+  // useEffect(() => {
+  //   const singleUser = JSON.parse(
+  //     localStorage.getItem('singleUser') || ''
+  //   );
+  //   if (singleUser) {
+  //     setSingleUser(singleUser);
+  //   }
+  // }, []);
 
   useEffect(() => {
-    setLoading(true);
-    fetch(
-      `https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users/${id}`
-    )
-      .then((res) => res.json())
-      .then((resData) => {
-        setData(resData);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err);
-      });
-  }, []);
+    localStorage.setItem(
+      'singleUser',
+      JSON.stringify(data)
+    );
+    setSingleUser(data)
+  }, [data]);
 
+  // console.log(singleUser);
 
-  interface StepComponents {
-    1: JSX.Element;
-    2: JSX.Element;
-    3: JSX.Element;
-    4: JSX.Element;
-    5: JSX.Element;
-    6: JSX.Element;
-  }
+  // const cachedData =localStorage.getItem('singleUser')
+
+  // if (cachedData !== undefined) {
+  //   setSingleUser(JSON.parse(cachedData||""))
+  // }
 
   let stepComponents: StepComponents = {
-    1: <GeneralDetails myId={id} />,
+    1: <GeneralDetails data={singleUser} />,
     2: <Document />,
     3: <BankDetails />,
     4: <Loans />,
@@ -64,7 +78,10 @@ const EachUser = () => {
     6: <AppsAndSystem />,
   };
   return (
-    <DashboardLayout isLoading={loading} error={error}>
+    <DashboardLayout
+      isLoading={isLoading}
+      error={isError}
+    >
       <main>
         <BackBtn />
 
@@ -86,10 +103,10 @@ const EachUser = () => {
         <div className="rounded-[4px] bg-white mt-10 p-4 md:p-[30px] !pb-0">
           <div className="flex flex-wrap gap-y-4">
             <div className="flex gap-5 items-center border-r border-primary_300/[0.2] pr-[30px]">
-              {data?.profile.avatar ? (
+              {singleUser?.profile.avatar ? (
                 <img
-                  src={data?.profile.avatar}
-                  alt={data?.userName}
+                  src={singleUser?.profile.avatar}
+                  alt={singleUser?.userName}
                   className="rounded-full w-[100px] h-[100px]"
                 />
               ) : (
@@ -99,11 +116,11 @@ const EachUser = () => {
               )}
               <div>
                 <p className="font-medium text-primary_200 text-xl md:text-2xl">
-                  {data?.profile.firstName}{' '}
-                  {data?.profile.lastName}
+                  {singleUser?.profile.firstName}{' '}
+                  {singleUser?.profile.lastName}
                 </p>
                 <p className="font-normal text-primary_300 text-sm">
-                  {data?.userName}
+                  {singleUser?.userName}
                 </p>
               </div>
             </div>
@@ -131,10 +148,10 @@ const EachUser = () => {
 
             <div className="pl-[30px] flex flex-col justify-center items-center">
               <p className="font-medium text-primary_200 text-xl md:text-2xl">
-                ₦{data?.accountBalance}
+                ₦{singleUser?.accountBalance}
               </p>
               <p className="font-normal mb-2 text-primary_200 text-xs">
-                {data?.accountNumber}/Providus
+                {singleUser?.accountNumber}/Providus
                 Bank{' '}
               </p>
             </div>

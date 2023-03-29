@@ -1,33 +1,13 @@
-import { useEffect, useState } from 'react';
-import { DataProps } from '../../../../Services/model';
+import { DataProps } from '../../../../features/model';
 
 interface GeneralDetailsProps {
-  myId: number | string | undefined;
+  data?: DataProps;
 }
 
 const GeneralDetails = ({
-  myId,
+  data,
 }: GeneralDetailsProps) => {
-  const [data, setData] = useState<DataProps>();
-  const [loading, setLoading] =
-    useState<boolean>(false);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-    fetch(
-      `https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users/${myId}`
-    )
-      .then((res) => res.json())
-      .then((resData) => {
-        setData(resData);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(true);
-      });
-  }, []);
-
+ 
   const personalInformationObj = [
     {
       label: 'Full name',
